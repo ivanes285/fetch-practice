@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f6bd20;
+    }
+  </style>
+
+  <body>
+    <img src="" height="200" id="pokemon" />
+    <script>
+      //Seleccion el id #pokemon del elemento img
+      const $pokemon = document.querySelector("#pokemon");
+      function renderPokemon(image) {
+        $pokemon.setAttribute("src", image);
+      }
+
+      //El fetch tambien me ayuda a capturar datos desde mi servidor local en este caso un Json
+
+      //   fetch("./img/pokemon.json", {})
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       debugger
+      //       renderPokemon(data.image)
+      //     });
+
+
+    //   Puedo hacerlo Directamente desde una imagen conviertiendo en dato binario y despues en una URL
+    //   que si acepta el src de mi etiqueta img
+
+    //   fetch('./img/pikachu.png')
+    //   .then(response => response.blob())
+    //   .then(binaryImage =>{
+    //       const domString = URL.createObjectURL(binaryImage)
+    //       renderPokemon(domString)
+    //   })
+
+      fetch('https://pokeapi.co/api/v2/pokemon/25')
+      .then(response => response.json())
+      .then(pokemon=>{
+        debugger
+        renderPokemon(pokemon.sprites.front_default)
+      })
+
+
+
+
+    </script>
+  </body>
+</html>
